@@ -7,11 +7,11 @@ import { tabletDevice } from "../shared/MediaQueries";
 import LoginSwitch from "./Login/LoginSwitch/LoginSwitch";
 
 const LoginSection = styled.section`
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "LoginContainer" "ImageContainer";
-  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "LoginContainer" "ImageContainer";
+
   @media (min-width: ${tabletDevice}px) {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
@@ -33,28 +33,25 @@ class Login extends React.Component {
   state = {
     selectedForm: "Login"
   };
- 
 
   componentDidMount() {
     this.updateForm(this.state.selectedForm);
   }
 
-  updateForm = async (selectedForm) => {
+  updateForm = selectedForm => {
     this.setState(() => ({
-      selectedForm: selectedForm,
-    }))
+      selectedForm
+    }));
     console.log(`state is: ${this.state.selectedForm}`);
-
-    if(selectedForm === 'Login') {
-      console.log('I am rendering Login Component');
+    if (selectedForm === "Login") {
+      console.log("I am rendering Login Component");
+    } else {
+      console.log("I am rendering SignUp Component");
     }
-    else {
-      console.log('I am rendering SignUp Component');
-    }
-  }
+  };
 
   render() {
-    const selectedForm = this.state;
+    const { selectedForm } = this.state;
     return (
       <LoginSection>
         <LoginContainer>
